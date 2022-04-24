@@ -93,7 +93,59 @@ qplot(data = stats, x = Income.Group, y=Birth.rate, geom="boxplot")
 
 
 
+#------------------------------------- Visualising with QPlot: Part 1
+qplot(data = stats, x = Internet.users, y=Birth.rate, size = I(2), colour=Income.Group)
 
 
 
 
+#------------------------------------- Building Dataframes
+mydf <- data.frame(Countries_2012_Dataset, Codes_2012_Dataset, Regions_2012_Dataset)
+#colnames(mydf) <- c("Country", "Code", "Region")
+#head(mydf)
+rm(mydf)
+mydf <- data.frame(Country = Countries_2012_Dataset, Code = Codes_2012_Dataset, Region = Regions_2012_Dataset)
+
+head(mydf)
+tail(mydf)
+summary(mydf)
+glimpse(mydf)
+
+
+
+
+#------------------------------------- Merging Data Frames
+merged <- merge(stats, mydf, by.x = "Country.Code", by.y = "Code")
+
+merged$Country <- NULL
+str(merged)
+tail(merged)
+
+
+
+
+
+#------------------------------------- Visualising with new split
+
+qplot(data = merged, x = Internet.users, y = Birth.rate, colour=Region)
+
+#1. Shapes
+qplot(data = merged, x = Internet.users, y = Birth.rate, 
+      colour=Region, 
+      size=I(3), 
+      shape=I(19))
+
+#2. Transparency
+qplot(data = merged, x = Internet.users, y = Birth.rate, 
+      colour=Region, 
+      size=I(3), 
+      shape=I(19), 
+      alpha =I(0.6))
+
+
+#3. Title
+qplot(data = merged, x = Internet.users, y = Birth.rate, colour=Region, size=I(3), 
+      shape=I(19), 
+      alpha =I(0.6),
+      main ="Birth Rate vs Internet Users"
+      )

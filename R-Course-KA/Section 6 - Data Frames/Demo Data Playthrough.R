@@ -81,17 +81,13 @@ stats[stats$Country.Name == "Malta",]
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+#------------------------------------- Introduction to qplot
+library(ggplot2)
+?qplot
+qplot(data = stats, x = Internet.users)
+qplot(data = stats, x = Income.Group, y=Birth.rate)
+qplot(data = stats, x = Income.Group, y=Birth.rate, size = I(2), colour=I("blue"))
+qplot(data = stats, x = Income.Group, y=Birth.rate, geom="boxplot")
 
 
 

@@ -24,6 +24,7 @@ library(e1071)
 pca = preProcess(x = training_set[-14], method = 'pca', pcaComp = 2)
 training_set = predict(pca, training_set)
 training_set = training_set[c(2, 3, 1)]
+
 test_set = predict(pca, test_set)
 test_set = test_set[c(2, 3, 1)]
 
